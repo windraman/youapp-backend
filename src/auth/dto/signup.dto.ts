@@ -14,7 +14,7 @@ export class SignUpDto {
 
   @IsNotEmpty()
   @IsEmail({}, { message: 'Email format is incorrect!' })
-  @Validate(EmailExist)
+  // @Validate(EmailExist)
   readonly email: string;
 
   @IsNotEmpty()

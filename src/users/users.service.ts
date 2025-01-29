@@ -51,10 +51,9 @@ export class UsersService {
   }
 
   async updateById(id: string, updateUserDto: UpdateUserDto): Promise<User> {
-    updateUserDto.profile.zodiac = getShio(updateUserDto.profile.birthday);
-    updateUserDto.profile.horoscope = getZodiacSign(
-      updateUserDto.profile.birthday,
-    );
+    const birthday = new Date(Date.parse(updateUserDto.profile.birthday));
+    updateUserDto.profile.zodiac = getShio(birthday);
+    updateUserDto.profile.horoscope = getZodiacSign(birthday);
     return await this.userModel.findByIdAndUpdate(id, updateUserDto, {
       new: true,
       runValidators: true,

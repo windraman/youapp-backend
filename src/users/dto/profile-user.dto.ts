@@ -12,11 +12,11 @@ export class ProfileUserDto {
   @IsString()
   readonly name: string;
 
-  @IsEnum(['Male', 'Female'])
-  readonly gender: 'Male' | 'Female';
+  @IsEnum(['Not Selected', 'Male', 'Female'])
+  readonly gender: 'Not Selected' | 'Male' | 'Female';
 
   @IsDate()
-  readonly birthday: Date;
+  readonly birthday: string;
 
   @IsString()
   horoscope: string;

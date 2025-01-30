@@ -8,6 +8,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ChatsModule } from './chats/chats.module';
 import { SocketIoClientProvider } from './socket-io-client.provider';
 import { ChatGateway } from './chat.gateway';
+import { FileUploadModule } from './file-upload/file-upload.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ChatGateway } from './chat.gateway';
     UsersModule,
     AuthModule,
     ChatsModule,
+    FileUploadModule,
   ],
   controllers: [AppController],
   providers: [AppService, SocketIoClientProvider, ChatGateway],

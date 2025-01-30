@@ -27,6 +27,9 @@ export class Profile {
 
   @Prop()
   interests: Array<String>;
+
+  @Prop()
+  image: String;
 }
 
 export const ProfileSchema = SchemaFactory.createForClass(Profile);

@@ -32,4 +32,7 @@ export class ProfileUserDto {
 
   @IsArray()
   readonly interests: Array<string>;
+
+  @IsString()
+  readonly image: string;
 }

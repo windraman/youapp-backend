@@ -9,7 +9,6 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-
 import { Query as ExpressQuery } from 'express-serve-static-core';
 import { AuthGuard } from '@nestjs/passport';
 import { User } from 'src/schemas/users.schema';
@@ -36,8 +35,6 @@ export class UsersController {
   @Patch('profile')
   @UseGuards(AuthGuard())
   async updateUser(
-    // @Param('id')
-    // id: string,
     @Body()
     profile: UpdateUserDto,
     @Req() req,

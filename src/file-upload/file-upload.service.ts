@@ -16,7 +16,12 @@ export class FileUploadService {
     }
 
     // validate file type
-    const allowedMimeTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+    const allowedMimeTypes = [
+      'image/jpg',
+      'image/jpeg',
+      'image/png',
+      'application/pdf',
+    ];
     if (!allowedMimeTypes.includes(file.mimetype)) {
       throw new BadRequestException('invalid file type');
     }
@@ -40,7 +45,6 @@ export class FileUploadService {
     return {
       message: 'File uploaded successfully',
       filePath: file.path,
-      id: user,
     };
   }
 }

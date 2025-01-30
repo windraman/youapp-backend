@@ -15,16 +15,11 @@ import { User } from 'src/schemas/users.schema';
 import { ProfileUserDto } from './dto/profile-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtStrategy } from 'src/auth/jwt.strategy';
+import { ProfileImageDto } from './dto/profile-image.dto';
 
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
-
-  // @Get()
-  // @UseGuards(AuthGuard())
-  // async getUsers(@Query() query: ExpressQuery): Promise<User[]> {
-  //   return this.usersService.findAll(query);
-  // }
 
   @Get()
   @UseGuards(AuthGuard())
@@ -41,12 +36,4 @@ export class UsersController {
   ): Promise<User> {
     return this.usersService.updateById(req.user._id, profile);
   }
-
-  // @Get('profile')
-  // @UseGuards(AuthGuard())
-  // async getProfile(
-  //   user: JwtStrategy
-  // ): Promise<User> {
-  //   return user;
-  // }
 }

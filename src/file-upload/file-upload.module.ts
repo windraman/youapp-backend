@@ -28,6 +28,12 @@ import { UserSchema } from 'src/schemas/users.schema';
           cb(null, filename);
         },
       }),
+      fileFilter: (req, file, callback) => {
+        if (!file.mimetype.startsWith('image/')) {
+          return callback(new Error('Only images are allowed!'), false);
+        }
+        callback(null, true);
+      },
     }),
   ],
   controllers: [FileUploadController],

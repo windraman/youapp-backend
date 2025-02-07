@@ -8,13 +8,16 @@ import { Participant } from './participant.schema';
 })
 export class ChatPayload {
   @Prop()
+  sender: String;
+
+  @Prop()
   content: String;
 
   @Prop()
   mode: String;
 
   @Prop()
-  participant: Array<Participant>;
+  roomid: String;
 }
 
 export const ChatPayloadSchema = SchemaFactory.createForClass(ChatPayload);

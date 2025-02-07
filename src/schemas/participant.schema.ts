@@ -6,9 +6,6 @@ import { User } from './users.schema';
   timestamps: true,
 })
 export class Participant {
-  //   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
-  //   user: User;
-
   @Prop()
   user: String;
 

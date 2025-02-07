@@ -6,9 +6,8 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ChatsModule } from './chats/chats.module';
-import { SocketIoClientProvider } from './socket-io-client.provider';
-import { ChatGateway } from './chat.gateway';
 import { FileUploadModule } from './file-upload/file-upload.module';
+import { SocketsModule } from './sockets/socket.module';
 
 @Module({
   imports: [
@@ -21,9 +20,9 @@ import { FileUploadModule } from './file-upload/file-upload.module';
     AuthModule,
     ChatsModule,
     FileUploadModule,
+    SocketsModule,
   ],
   controllers: [AppController],
-  providers: [AppService, SocketIoClientProvider, ChatGateway],
-  // providers: [AppService, ChatGateway],
+  providers: [AppService],
 })
 export class AppModule {}

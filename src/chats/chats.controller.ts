@@ -6,7 +6,6 @@ import {
   Req,
   UseGuards,
   ValidationPipe,
-  Logger,
 } from '@nestjs/common';
 import { ChatsService } from './chats.service';
 import { AuthGuard } from '@nestjs/passport';
@@ -15,31 +14,29 @@ import { ChatPayloadDto } from './dto/chatpayload.dto';
 
 import { MessagePattern, Payload, Ctx } from '@nestjs/microservices';
 import { Socket, io } from 'socket.io-client';
+import { ApiBearerAuth, ApiHeader, ApiTags } from '@nestjs/swagger';
+import { Room } from 'src/schemas/room.schema';
+import { RoomDto } from './dto/room.dto';
 
+@ApiTags('Chats')
 @Controller('chats')
+@ApiBearerAuth('Authorization')
 export class ChatsController {
   constructor(private chatService: ChatsService) {}
 
-  // @Get()
-  // @UseGuards(AuthGuard())
-  // async getUsers(@Query() query: ExpressQuery): Promise<User[]> {
-  //   return this.usersService.findAll(query);
-  // }
+  @Get('/room')
+  @UseGuards(AuthGuard())
+  async getRooms(@Req() req): Promise<Room[]> {
+    return this.chatService.myRooms(req.user._id.toString());
+  }
 
   @Post('/new')
   @UseGuards(AuthGuard())
-  async createChat(
+  async newRoom(
     @Req() req,
-    @Body(ValidationPipe) chatPayloadDto: ChatPayloadDto,
-  ): Promise<ChatPayload> {
-    const socket = io('ws://localhost:3001');
-    socket.emit('message', chatPayloadDto);
-    return this.chatService.createChat(req.user._id.toString(), chatPayloadDto);
-  }
-
-  @Get()
-  @UseGuards(AuthGuard())
-  async getChats(@Req() req): Promise<ChatPayload[]> {
-    return this.chatService.myChats(req.user._id.toString());
+    @Body()
+    room: RoomDto,
+  ): Promise<Room> {
+    return this.chatService.createRoom(req.user._id.toString(), room);
   }
 }

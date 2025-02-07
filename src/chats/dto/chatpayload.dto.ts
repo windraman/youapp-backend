@@ -10,6 +10,8 @@ import {
 import { ParticipantDto } from './participant.dto';
 
 export class ChatPayloadDto {
+  sender: string;
+
   @IsNotEmpty()
   @IsString()
   readonly content: string;
@@ -18,7 +20,5 @@ export class ChatPayloadDto {
   @IsString()
   readonly mode: string;
 
-  @IsNotEmpty()
-  @IsArray()
-  readonly participant: Array<ParticipantDto>;
+  roomid: string;
 }
